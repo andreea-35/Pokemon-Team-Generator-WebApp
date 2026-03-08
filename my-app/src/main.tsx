@@ -5,6 +5,6 @@ import PokemonSlot from './Components/PokemonSlot/PokemonSlot.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PokemonSlot />
+    <PokemonSlot name={'aromatisse'} type={'fairy'}/>
   </StrictMode>,
 )

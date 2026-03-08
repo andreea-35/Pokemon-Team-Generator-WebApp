@@ -1,3 +1,24 @@
+:root {
+  --type-normal: #e2e2d2;
+  --type-fire: #ffb7a5;
+  --type-water: #a2d1ff;
+  --type-electric: #ffef9e;
+  --type-grass: #b7e5a4;
+  --type-ice: #c2f1f2;
+  --type-fighting: #e8b3b0;
+  --type-poison: #d6b0d6;
+  --type-ground: #ebe0b7;
+  --type-flying: #c6bdf4;
+  --type-psychic: #ffb7d5;
+  --type-bug: #d6e091;
+  --type-rock: #d9d09e;
+  --type-ghost: #b2a4d4;
+  --type-dragon: #b3a2ff;
+  --type-dark: #b8b0ab;
+  --type-steel: #d1d1e0;
+  --type-fairy: #f4cfeb;
+}
+
 div{
   width: 100px;
   height: 100px;
@@ -7,16 +28,18 @@ div{
 }
 
 .circle{
-  height: 90%;
-  width: 90%;
+  height: 70px;
+  width: 70px;
   background-color: #bbb;
   border-radius: 50%;
-  display: inline-block;
+  flex-shrink: 0;
+  position: absolute;
   z-index:-1;
 }
 
 img{
     width:100%;
     height:100%;
+    position: relative;
     z-index:0;
 }
