@@ -11,7 +11,7 @@ function PokemonSlot ({ name, type }: PokemonSlotProps) {
   };
 
   return (
-    <div>
+    <div className='pokemon-slot'>
         <div className="circle" style={circleStyle} />
         <img 
             src={`https://play.pokemonshowdown.com/sprites/home-centered/${name.toLowerCase()}.png`}
