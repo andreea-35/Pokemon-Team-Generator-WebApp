@@ -10,13 +10,12 @@ const app = express();
 app.use(cors()); // allows React app on one port to talk to server on another port
 app.use(express.json()); // allows server to understand JSON data
 
-// PostgreSQL Connection Pool
+// Supabase Connection Pool
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASS || undefined, 
-  port: process.env.DB_PORT,
+  connectionString: process.env.DB_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // API Route
