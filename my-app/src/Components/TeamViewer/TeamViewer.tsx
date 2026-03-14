@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import html2canvas from 'html2canvas';
 import PokemonSlot from '../PokemonSlot/PokemonSlot.tsx';
 import './TeamViewer.css';
 
@@ -10,6 +11,9 @@ interface Pokemon {
 
 const TeamViewer = () => {
   const [myTeam, setMyTeam] = useState<Pokemon[]>([]);
+
+  // reference to team container
+  const teamRef = useRef<HTMLDivElement>(null);
 
   // FETCH FUNCTION
   const fetchRandomTeam = async () => {
@@ -32,15 +36,44 @@ const TeamViewer = () => {
     fetchRandomTeam();
   }, []); 
 
+  const exportAsImage = async () => {
+    if (!teamRef.current) return;
+
+    try {
+      const canvas = await html2canvas(teamRef.current, {
+        useCORS: true,
+        backgroundColor: null,
+        scale: 2,
+      });
+
+      // canvas to downloadable image URL
+      const image = canvas.toDataURL('image/png');
+
+      // temporary <a> tag to trigger the download
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = 'my-pokemon-team.png';
+      link.click();
+
+    } catch (error) {
+      console.error('Failed to export image:', error);
+    }
+  };
+
   return (
     <div className="viewer-wrapper">
       {/* GENERATE BUTTON */}
       <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <button 
-          onClick={fetchRandomTeam} 
+        <button onClick={fetchRandomTeam} 
           style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
         >
           Generate Team
+        </button>
+
+      {/* EXPORT AS IMAGE BUTTON */}
+      <button onClick={exportAsImage} 
+      style={{ padding: '10px 20px', cursor: 'pointer', backgroundColor: '#4CAF50', color: 'white' }}>
+          Export as PNG
         </button>
       </div>
 
