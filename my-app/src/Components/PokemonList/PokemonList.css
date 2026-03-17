@@ -1,0 +1,50 @@
+.pokemon-list-container {
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  font-family: sans-serif;
+}
+
+.pokemon-list-container h2 {
+  text-align: center;
+  color: #f8f7f7;
+}
+
+.list-wrapper {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee; /* thin gray line! */
+  transition: background-color 0.2s;
+}
+
+/* remove border from the very last item so it looks clean */
+.list-row:last-child {
+  border-bottom: none;
+}
+
+/* subtle hover effect */
+.list-row:hover {
+  background-color: #f9f9f9;
+}
+
+.list-sprite {
+  width: 60px;
+  height: 50px;
+  object-fit: contain;
+  margin-right: 15px;
+}
+
+.list-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}

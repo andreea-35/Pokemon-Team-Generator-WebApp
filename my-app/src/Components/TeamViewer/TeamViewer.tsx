@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import html2canvas from 'html2canvas';
 import PokemonSlot from '../PokemonSlot/PokemonSlot.tsx';
 import './TeamViewer.css';
@@ -9,32 +9,15 @@ interface Pokemon {
   type: string;
 }
 
-const TeamViewer = () => {
-  const [myTeam, setMyTeam] = useState<Pokemon[]>([]);
+interface TeamViewerProps {
+  team: Pokemon[];
+  onReroll: () => void;
+}
+
+const TeamViewer = ({ team, onReroll }: TeamViewerProps) => {
 
   // reference to team container
   const teamRef = useRef<HTMLDivElement>(null);
-
-  // FETCH FUNCTION
-  const fetchRandomTeam = async () => {
-    try {
-      // backend call
-      const response = await fetch('http://localhost:3000/api/pokemon/random');
-      
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      
-      const data = await response.json();
-      setMyTeam(data);
-    } catch (error) {
-      console.error('Error fetching team:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchRandomTeam();
-  }, []); 
 
   const exportAsImage = async () => {
     if (!teamRef.current) return;
@@ -64,7 +47,7 @@ const TeamViewer = () => {
     <div className="viewer-wrapper">
       {/* GENERATE BUTTON */}
       <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <button onClick={fetchRandomTeam} 
+        <button onClick={onReroll} 
           style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
         >
           Generate Team
@@ -78,8 +61,8 @@ const TeamViewer = () => {
       </div>
 
       {/* POKEMON SLOTS */}
-      <div className="team-container">
-        {myTeam.map((pokemon) => (
+      <div className="team-container" ref={teamRef}>
+        {team.map((pokemon) => (
           <PokemonSlot 
             key={pokemon.id}
             name={pokemon.name} 

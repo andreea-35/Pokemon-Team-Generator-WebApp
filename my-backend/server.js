@@ -19,12 +19,12 @@ const pool = new Pool({
 });
 
 // API Route
-app.get('/api/pokemon/random', async (req, res) => {
+app.get('/api/pokemon', async (req, res) => {
   try {
-    const query = 'SELECT * FROM team ORDER BY RANDOM() LIMIT 6';
+    const query = 'SELECT * FROM team ORDER BY id ASC';
     const result = await pool.query(query); 
     
-    // send the 6 db rows back to the React frontend as JSON
+    // send all pokemon back to the React frontend as JSON
     res.json(result.rows); 
   } catch (err) {
     console.error('Database error:', err);
