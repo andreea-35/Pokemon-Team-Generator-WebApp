@@ -39,7 +39,7 @@ const App = () => {
 
   return (
     <main>
-      <h2>My Pokémon Team Generator</h2>
+      <h2 style={{ textAlign: 'center' }}>My Pokémon Team Generator</h2>
       
       {/* pass current 6 and reroll function as props */}
       <TeamViewer team={currentTeam} onReroll={generateTeam} />
