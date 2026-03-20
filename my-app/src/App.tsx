@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import TeamViewer from './Components/TeamViewer/TeamViewer.tsx';
 import PokemonList from './Components/PokemonList/PokemonList.tsx';
+import FiltersMenu from './Components/Filters/FiltersMenu.tsx';
 
 interface Pokemon {
   id: number;
@@ -38,16 +39,23 @@ const App = () => {
   }, []); // the [] means "only run this once"
 
   return (
-    <main>
-      <h2 style={{ textAlign: 'center' }}>My Pokémon Team Generator</h2>
+    <main style = {{ display: 'flex', minHeight: '100vh'}}>
+    {/* Center Area */}
+      <section style={{ flex: '3', padding: '20px'}}>
+        <h2 style={{ textAlign: 'center' }}>My Pokémon Team Generator</h2>
       
-      {/* pass current 6 and reroll function as props */}
-      <TeamViewer team={currentTeam} onReroll={generateTeam} />
+        {/* pass current 6 and reroll function as props */}
+        <TeamViewer team={currentTeam} onReroll={generateTeam} />
 
-      <hr style={{ margin: '40px 0' }} />
+        <hr style={{ margin: '40px 0' }} />
 
-      {/* pass full pokemon list as a prop */}
-      <PokemonList fullRoster={allPokemon} />
+        {/* pass full pokemon list as a prop */}
+        <PokemonList fullRoster={allPokemon} />
+      </section>
+      <aside style={{ flex:'1'}}>
+        {/* pass full pokemon list as a prop */}
+        <FiltersMenu testText=''/>  
+      </aside>
     </main>
   );
 };
