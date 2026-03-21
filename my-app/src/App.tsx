@@ -12,11 +12,6 @@ interface Pokemon {
 const App = () => {
   const [allPokemon, setAllPokemon] = useState<Pokemon[]>([]); // full results
   const [currentTeam, setCurrentTeam] = useState<Pokemon[]>([]); // generated team
-  const filterCategories = [
-    { name: 'Types', options: ['Normal', 'Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy'] },
-    { name: 'Nat Dex', options: ['Gen 1', 'Gen 2', 'Gen 3', 'Gen 4', 'Gen 5', 'Gen 6', 'Gen 7', 'Gen 8', 'Gen 9'] },
-    { name: 'Vibe', options: ['Cool', 'Cute', 'Goofy', 'Little Guy'] },
-  ];
 
   // function to shuffle array and grab the first 6
   const pickRandomTeam = (roster: Pokemon[]) => {
@@ -43,6 +38,22 @@ const App = () => {
       .catch((err) => console.error('Error fetching data:', err));
   }, []); // the [] means "only run this once"
 
+  // filter categories
+  const filterCategories = [
+    { name: 'Types', options: ['Normal', 'Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy'] },
+    { name: 'Vibe', options: ['Cool', 'Cute', 'Goofy', 'Little Guy'] },
+  ];
+
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+
+  const toggleFilter = (filterName: string) => {
+    setSelectedFilters((prev) => 
+      prev.includes(filterName)
+        ? prev.filter(f => f !== filterName) // remove if not selected anymore (keeps everything that isn't the selected one)
+        : [...prev, filterName] // add if new (at end of list)
+    )
+  }
+
   return (
     <main style = {{ display: 'flex', minHeight: '100vh'}}>
     {/* Center Area */}
@@ -59,7 +70,7 @@ const App = () => {
       </section>
       <aside style={{ flex:'1'}}>
         {/* pass categories as a prop */}
-        <FiltersMenu title='' categories={filterCategories}/>  
+        <FiltersMenu categories={filterCategories} selectedFilters={selectedFilters} onToggle={toggleFilter}/>  
       </aside>
     </main>
   );

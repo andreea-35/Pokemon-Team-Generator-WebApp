@@ -6,27 +6,33 @@ interface FilterCategory {
 }
 
 interface FiltersMenuProps {
-  title: string;
   categories: FilterCategory[];
+  selectedFilters: string[]; 
+  onToggle: (name: string) => void
 }
 
-const FiltersMenu = ({ title, categories }: FiltersMenuProps) => {
+const FiltersMenu = ({ categories, selectedFilters, onToggle}: FiltersMenuProps) => {
 
   return (
     <div className='filters-menu'>
-      <h2 className="menu-title">{title}</h2>
-      
       {categories.map((cat) => (
         <div key={cat.name as string} className="filter-group">
           <h4 className="category-name">{cat.name}</h4>
           <hr className="category-divider" />
           
           <div className="button-grid">
-            {cat.options.map((opt) => (
-              <button key={opt} className="filter-btn">
+            {cat.options.map((opt) => {
+              const isActive = selectedFilters.includes(opt) // current button is selected
+              return (
+                <button 
+                  key={opt} 
+                  onClick={() => onToggle(opt)}
+                  className={ `filter-btn ${isActive ?'active' : ''}`}
+                >
                 {opt}
               </button>
-            ))}
+              );
+            })}
           </div>
         </div>
       ))}
