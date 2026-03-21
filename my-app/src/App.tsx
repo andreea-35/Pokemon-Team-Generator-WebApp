@@ -12,6 +12,11 @@ interface Pokemon {
 const App = () => {
   const [allPokemon, setAllPokemon] = useState<Pokemon[]>([]); // full results
   const [currentTeam, setCurrentTeam] = useState<Pokemon[]>([]); // generated team
+  const filterCategories = [
+    { name: 'Types', options: ['Normal', 'Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy'] },
+    { name: 'Nat Dex', options: ['Gen 1', 'Gen 2', 'Gen 3', 'Gen 4', 'Gen 5', 'Gen 6', 'Gen 7', 'Gen 8', 'Gen 9'] },
+    { name: 'Vibe', options: ['Cool', 'Cute', 'Goofy', 'Little Guy'] },
+  ];
 
   // function to shuffle array and grab the first 6
   const pickRandomTeam = (roster: Pokemon[]) => {
@@ -53,8 +58,8 @@ const App = () => {
         <PokemonList fullRoster={allPokemon} />
       </section>
       <aside style={{ flex:'1'}}>
-        {/* pass full pokemon list as a prop */}
-        <FiltersMenu testText=''/>  
+        {/* pass categories as a prop */}
+        <FiltersMenu title='' categories={filterCategories}/>  
       </aside>
     </main>
   );
