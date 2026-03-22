@@ -1,0 +1,43 @@
+import './FiltersMenu.css';
+
+interface FilterCategory {
+  name: String;
+  options: string[];
+}
+
+interface FiltersMenuProps {
+  categories: FilterCategory[];
+  selectedFilters: string[]; 
+  onToggle: (name: string) => void
+}
+
+const FiltersMenu = ({ categories, selectedFilters, onToggle}: FiltersMenuProps) => {
+
+  return (
+    <div className='filters-menu'>
+      {categories.map((cat) => (
+        <div key={cat.name as string} className="filter-group">
+          <h4 className="category-name">{cat.name}</h4>
+          <hr className="category-divider" />
+          
+          <div className="button-grid">
+            {cat.options.map((opt) => {
+              const isActive = selectedFilters.includes(opt) // current button is selected
+              return (
+                <button 
+                  key={opt} 
+                  onClick={() => onToggle(opt)}
+                  className={ `filter-btn ${isActive ?'active' : ''}`}
+                >
+                {opt}
+              </button>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default FiltersMenu;
