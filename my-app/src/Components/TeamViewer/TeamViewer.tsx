@@ -6,7 +6,7 @@ import './TeamViewer.css';
 interface Pokemon {
   id: number;
   name: string;
-  type: string;
+  primary_type: string;
 }
 
 interface TeamViewerProps {
@@ -66,7 +66,7 @@ const TeamViewer = ({ team, onReroll }: TeamViewerProps) => {
           <PokemonSlot 
             key={pokemon.id}
             name={pokemon.name} 
-            type={pokemon.type} 
+            primary_type={pokemon.primary_type} 
           />
         ))}
       </div>

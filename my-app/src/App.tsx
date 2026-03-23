@@ -6,7 +6,7 @@ import FiltersMenu from './Components/Filters/FiltersMenu.tsx';
 interface Pokemon {
   id: number;
   name: string;
-  type: string;
+  primary_type: string;
 }
 
 const App = () => {
@@ -41,7 +41,7 @@ const App = () => {
   // filter categories
   const filterCategories = [
     { name: 'Types', options: ['Normal', 'Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy'] },
-    { name: 'Vibe', options: ['Cool', 'Cute', 'Goofy', 'Little Guy'] },
+    { name: 'Vibe', options: ['Cool', 'Cute', 'Goofy', 'Little Guy', 'Cunty'] },
   ];
 
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);

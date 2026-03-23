@@ -10,7 +10,7 @@ const app = express();
 app.use(cors()); // allows React app on one port to talk to server on another port
 app.use(express.json()); // allows server to understand JSON data
 
-// Supabase Connection Pool
+// Supabase Connection
 const pool = new Pool({
   connectionString: process.env.DB_URL,
   ssl: {
@@ -21,7 +21,7 @@ const pool = new Pool({
 // API Route
 app.get('/api/pokemon', async (req, res) => {
   try {
-    const query = 'SELECT * FROM team ORDER BY id ASC';
+    const query = 'SELECT * FROM pokemon ORDER BY id ASC';
     const result = await pool.query(query); 
     
     // send all pokemon back to the React frontend as JSON

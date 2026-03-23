@@ -3,7 +3,7 @@ import './PokemonList.css';
 interface Pokemon {
   id: number;
   name: string;
-  type: string;
+  primary_type: string;
 }
 
 interface PokemonListProps {
