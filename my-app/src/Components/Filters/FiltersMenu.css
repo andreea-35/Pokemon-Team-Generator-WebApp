@@ -1,3 +1,30 @@
+:root {
+  --type-normal: #b4b4ae;
+  --type-fire: #e7876f;
+  --type-water: #5da1e5;
+  --type-electric: #d0bc55;
+  --type-grass: #7cb564;
+  --type-ice: #7eb5b6;
+  --type-fighting: #b97f7a;
+  --type-poison: #a56da5;
+  --type-ground: #c0b385;
+  --type-flying: #8a7fbd;
+  --type-psychic: #cd7e9f;
+  --type-bug: #a7b160;
+  --type-rock: #ada364;
+  --type-ghost: #6f6192;
+  --type-dragon: #7e6ec5;
+  --type-dark: #76706d;
+  --type-steel: #9a9aae;
+  --type-fairy: #c595ba;
+
+  --vibe-cool: #e7876f;
+  --vibe-cute: #c595ba;
+  --vibe-goofy: #d0bc55;
+  --vibe-little-guy: #7cb564;
+  --vibe-cunty: #7e6ec5;
+}
+
 .filters-menu {
   display: flex;
   flex-direction: column;
@@ -35,12 +62,13 @@
 }
 
 .active{
-  background-color: #9b1c1c;
   color: white;
+  filter: brightness(0.5);
+  box-shadow: inset 0 0 0 2px white;
 }
 
 .filter-btn:hover {
-  background-color: #894444;
+  filter: brightness(0.8);
   border: 1px solid white;
 }
 
