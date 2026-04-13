@@ -21,7 +21,7 @@ const pool = new Pool({
 // API Route
 app.get('/api/pokemon', async (req, res) => {
   try {
-    const query = 'SELECT * FROM team ORDER BY id ASC';
+    const query = 'SELECT * FROM pokemon ORDER BY id ASC';
     const result = await pool.query(query); 
     
     // send all pokemon back to the React frontend as JSON

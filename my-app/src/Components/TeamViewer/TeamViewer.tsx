@@ -2,12 +2,7 @@ import { useRef } from 'react';
 import html2canvas from 'html2canvas';
 import PokemonSlot from '../PokemonSlot/PokemonSlot.tsx';
 import './TeamViewer.css';
-
-interface Pokemon {
-  id: number;
-  name: string;
-  type: string;
-}
+import type { Pokemon } from '../../types/pokemon';
 
 interface TeamViewerProps {
   team: Pokemon[];
@@ -66,7 +61,7 @@ const TeamViewer = ({ team, onReroll }: TeamViewerProps) => {
           <PokemonSlot 
             key={pokemon.id}
             name={pokemon.name} 
-            type={pokemon.type} 
+            type={pokemon.primary_type} 
           />
         ))}
       </div>
