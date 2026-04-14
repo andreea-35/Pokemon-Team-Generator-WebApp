@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import TeamViewer from './Components/TeamViewer/TeamViewer.tsx';
 import PokemonList from './Components/PokemonList/PokemonList.tsx';
 import FiltersMenu from './Components/Filters/FiltersMenu.tsx';
+import ThemeConfig from './Components/ThemeConfig/ThemeConfig.tsx';
 import type { Pokemon } from './types/pokemon';
 
 const App = () => {
   const [allPokemon, setAllPokemon] = useState<Pokemon[]>([]); // full results
   const [currentTeam, setCurrentTeam] = useState<Pokemon[]>([]); // generated team
+  const [teamBgColor, setTeamBgColor] = useState<string>('#e0e0e0ff');
 
   // function to shuffle array and grab the first 6
   const pickRandomTeam = (roster: Pokemon[]) => {
@@ -96,12 +98,16 @@ const App = () => {
 
   return (
     <main style = {{ display: 'flex', minHeight: '100vh'}}>
+    {/* Left side: Theme Area */}
+    <aside style={{ flex:'1'}}>
+        <ThemeConfig color={teamBgColor} setColor={setTeamBgColor}/>  
+      </aside>
     {/* Center Area */}
       <section style={{ flex: '3', padding: '20px'}}>
         <h2 style={{ textAlign: 'center' }}>My Pokémon Team Generator</h2>
       
         {/* pass current 6 and reroll function as props */}
-        <TeamViewer team={currentTeam} onReroll={generateTeam} />
+        <TeamViewer team={currentTeam} onReroll={generateTeam} bgColor={teamBgColor}/>
 
         <hr style={{ margin: '40px 0' }} />
 
