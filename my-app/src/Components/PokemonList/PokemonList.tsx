@@ -1,10 +1,5 @@
 import './PokemonList.css';
-
-interface Pokemon {
-  id: number;
-  name: string;
-  primary_type: string;
-}
+import type { Pokemon } from '../../types/pokemon';
 
 interface PokemonListProps {
   fullRoster: Pokemon[];

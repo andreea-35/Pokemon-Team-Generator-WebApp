@@ -23,11 +23,22 @@ const FiltersMenu = ({ categories, selectedFilters, onToggle}: FiltersMenuProps)
           <div className="button-grid">
             {cat.options.map((opt) => {
               const isActive = selectedFilters.includes(opt) // current button is selected
+
+              // normalize names and replace spaces with dashes
+              const cleanOption = opt.toLowerCase().replace(/\s+/g, '-');
+              const cleanCategory = cat.name.toLowerCase().replace(/\s+/g, '-');
+              
+              // construct the css color name
+              const buttonColor = `var(--${cleanCategory}-${cleanOption})`;
+
               return (
                 <button 
                   key={opt} 
                   onClick={() => onToggle(opt)}
                   className={ `filter-btn ${isActive ?'active' : ''}`}
+                  style={{ 
+                    backgroundColor: buttonColor
+                  }}
                 >
                 {opt}
               </button>
