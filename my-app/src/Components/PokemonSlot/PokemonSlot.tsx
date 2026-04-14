@@ -2,12 +2,12 @@ import './PokemonSlot.css'
 
 interface PokemonSlotProps {
   name: string;
-  type: string;
+  primary_type: string;
 }
 
-function PokemonSlot ({ name, type }: PokemonSlotProps) {
+function PokemonSlot ({ name, primary_type }: PokemonSlotProps) {
   const circleStyle = {
-    backgroundColor: `var(--type-${type.toLowerCase()})`
+    backgroundColor: `var(--type-${primary_type.toLowerCase()})`
   };
 
   return (

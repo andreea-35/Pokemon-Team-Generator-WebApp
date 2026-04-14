@@ -10,7 +10,7 @@ const app = express();
 app.use(cors()); // allows React app on one port to talk to server on another port
 app.use(express.json()); // allows server to understand JSON data
 
-// Supabase Connection Pool
+// Supabase Connection
 const pool = new Pool({
   connectionString: process.env.DB_URL,
   ssl: {
