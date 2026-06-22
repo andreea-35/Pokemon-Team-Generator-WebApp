@@ -7,9 +7,10 @@ import type { Pokemon } from '../../types/pokemon';
 interface TeamViewerProps {
   team: Pokemon[];
   onReroll: () => void;
+  bgColor: string;
 }
 
-const TeamViewer = ({ team, onReroll }: TeamViewerProps) => {
+const TeamViewer = ({ team, onReroll, bgColor }: TeamViewerProps) => {
 
   // reference to team container
   const teamRef = useRef<HTMLDivElement>(null);
@@ -56,12 +57,17 @@ const TeamViewer = ({ team, onReroll }: TeamViewerProps) => {
       </div>
 
       {/* POKEMON SLOTS */}
-      <div className="team-container" ref={teamRef}>
+      <div className="team-container" 
+        ref={teamRef}
+        style={{ 
+          backgroundColor: bgColor,
+          transition: 'background-color 0.1s ease', // smooth transition when dragging
+          }}>
         {team.map((pokemon) => (
           <PokemonSlot 
             key={pokemon.id}
             name={pokemon.name} 
-            type={pokemon.primary_type} 
+            primary_type={pokemon.primary_type} 
           />
         ))}
       </div>
