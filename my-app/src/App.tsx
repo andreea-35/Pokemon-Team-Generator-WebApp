@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import TeamViewer from './Components/TeamViewer/TeamViewer.tsx';
 import PokemonList from './Components/PokemonList/PokemonList.tsx';
 import FiltersMenu from './Components/Filters/FiltersMenu.tsx';
+import Toggle from './Components/Filters/Toggle.tsx';
 import ThemeConfig from './Components/ThemeConfig/ThemeConfig.tsx';
 import type { Pokemon } from './types/pokemon';
 
@@ -15,6 +16,9 @@ const App = () => {
     const shuffled = [...roster].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 6);
   };
+
+  // inclusive/exclusive method
+  const [filterMethod, toggleFilterMethod] = useState(false);
 
   // generate
   const generateTeam = () => {
@@ -44,8 +48,21 @@ const App = () => {
           selectedVibes.some(f => f.toLowerCase().trim() === p.main_vibe?.toLowerCase().trim()) ||
           selectedVibes.some(f => f.toLowerCase().trim() === p.sec_vibe?.toLowerCase().trim());
   
-        
-        return matchesType && matchesVibe;
+        const conditions = [];
+
+        if (selectedTypes.length > 0) {
+          conditions.push(matchesType);
+        }
+
+        if (selectedVibes.length > 0) {
+          conditions.push(matchesVibe);
+        }
+
+        if (filterMethod) {
+          return conditions.some(Boolean); // inclusive (true) - ghost OR grass
+        } else {
+          return conditions.every(Boolean); // exclusive (false) - ghost AND grass
+        }
       });
     }
 
@@ -115,6 +132,8 @@ const App = () => {
         <PokemonList fullRoster={filteredPokemon} />
       </section>
       <aside style={{ flex:'1'}}>
+        {/* inclusive/exclusive filtering method */}
+        <Toggle filterMethod={filterMethod} toggleFilterMethod={toggleFilterMethod} />
         {/* pass categories as a prop */}
         <FiltersMenu categories={filterCategories} selectedFilters={selectedFilters} onToggle={toggleFilter}/>  
       </aside>
