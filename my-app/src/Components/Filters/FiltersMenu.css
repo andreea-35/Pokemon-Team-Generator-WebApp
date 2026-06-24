@@ -75,3 +75,45 @@
 .filter-btn:focus {
   outline: none;
 }
+
+/* filter method toggle */
+.toggle-switch {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 42px;
+  height: 25px;
+
+  background: #d1d5db;
+  border-radius: 9999px;
+
+  position: relative;
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.toggle-switch::before {
+  content: "";
+
+  position: absolute;
+  top: 2px;
+  left: 2px;
+
+  width: 21px;
+  height: 21px;
+
+  background: white;
+  border-radius: 50%;
+
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.toggle-switch:checked {
+  background: #3b82f6;
+}
+
+.toggle-switch:checked::before {
+  transform: translateX(17px);
+}
