@@ -1,4 +1,4 @@
-import './FiltersMenu.css';
+import './Toggle.css';
 
 interface ToggleProps {
   filterMethod: boolean; 
@@ -8,7 +8,7 @@ interface ToggleProps {
 const FiltersMenu = ({ filterMethod, toggleFilterMethod}: ToggleProps) => {
 
   return (
-    <div className='filters-menu'>
+    <div className='toggle'>
       <label className="toggle-container">
         <input
             type="checkbox"
@@ -16,7 +16,8 @@ const FiltersMenu = ({ filterMethod, toggleFilterMethod}: ToggleProps) => {
             checked={filterMethod}
             onChange={(e) => toggleFilterMethod(e.target.checked)}
         />
-        Filter Mode: {filterMethod ? 'Inclusive' : 'Exclusive'}
+        <span>Filter Mode: <b>{filterMethod ? 'Inclusive' : 'Exclusive'}</b></span>
+        <span className="tooltiptext">Pokemon satisfies <b>{filterMethod ? 'EITHER' : 'ALL'}</b> of the selected filters.</span>
         </label>
     </div>
   )
